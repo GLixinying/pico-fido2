@@ -23,6 +23,8 @@
 extern const uint8_t openpgp_aid[];
 extern const uint8_t openpgp_aid_full[];
 
+#define EF_MKEK 0xCC02
+
 #define ACL_NONE    { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }
 #define ACL_ALL     { 0 }
 #define ACL_RO      { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00 }
@@ -507,6 +509,7 @@ file_t *ef_keydev = NULL;
 file_t *ef_certdev = NULL;
 file_t *ef_counter = NULL;
 file_t *ef_pin = NULL;
+file_t *ef_pin_admin = NULL;
 file_t *ef_authtoken = NULL;
 file_t *ef_keydev_enc = NULL;
 file_t *ef_largeblob = NULL;
