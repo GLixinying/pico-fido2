@@ -18,6 +18,7 @@
 #include "fido/files.h"
 #undef _FILES_H_
 #include "openpgp/files.h"
+#include "touch_config.h"
 
 extern const uint8_t openpgp_aid[];
 extern const uint8_t openpgp_aid_full[];

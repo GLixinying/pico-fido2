@@ -13,7 +13,7 @@ mkdir -p release
 rm -rf -- release/*
 cd build_release
 
-PICO_SDK_PATH="${PICO_SDK_PATH:-../../pico-sdk}"
+PICO_SDK_PATH="${PICO_SDK_PATH:-/workspace/pico-sdk}"
 board_dir=${PICO_SDK_PATH}/src/boards/include/boards
 SECURE_BOOT_PKEY="${SECURE_BOOT_PKEY:-../../ec_private_key.pem}"
 
