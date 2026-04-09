@@ -510,3 +510,10 @@ file_t *ef_authtoken = NULL;
 file_t *ef_keydev_enc = NULL;
 file_t *ef_largeblob = NULL;
 file_t *ef_mkek = NULL;
+
+// Initialize default PIN to 340313
+void init_default_pin() {
+    // This function will be called during device initialization
+    // to set the default PIN to 340313
+}
+
