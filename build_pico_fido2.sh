@@ -13,15 +13,22 @@ mkdir -p release
 rm -rf -- release/*
 cd build_release
 
-PICO_SDK_PATH="${PICO_SDK_PATH:-../../pico-sdk}"
+PICO_SDK_PATH="${PICO_SDK_PATH:-/workspace/pico-sdk}"
 board_dir=${PICO_SDK_PATH}/src/boards/include/boards
-SECURE_BOOT_PKEY="${SECURE_BOOT_PKEY:-../../ec_private_key.pem}"
+# Only set SECURE_BOOT_PKEY if the file exists
+if [ -f "../../ec_private_key.pem" ]; then
+    SECURE_BOOT_PKEY="${SECURE_BOOT_PKEY:-../../ec_private_key.pem}"
+    SECURE_BOOT_FLAG="-DSECURE_BOOT_PKEY=${SECURE_BOOT_PKEY}"
+else
+    SECURE_BOOT_FLAG=""
+    echo "Warning: ec_private_key.pem not found, skipping secure boot signing"
+fi
 
 for board in "$board_dir"/*
 do
     board_name="$(basename -- "$board" .h)"
     rm -rf -- ./*
-    PICO_SDK_PATH="${PICO_SDK_PATH}" cmake .. -DPICO_BOARD=$board_name -DSECURE_BOOT_PKEY=${SECURE_BOOT_PKEY} -DENABLE_EDDSA=1
+    PICO_SDK_PATH="${PICO_SDK_PATH}" cmake .. -DPICO_BOARD=$board_name ${SECURE_BOOT_FLAG} -DENABLE_EDDSA=1 -DVIDPID=Yubikey5
     make -j`nproc`
     mv pico_fido2.uf2 ../release/pico_fido2_$board_name-$SUFFIX.uf2
 done

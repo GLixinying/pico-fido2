@@ -82,8 +82,8 @@ endif()
 
 list(APPEND SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/src/fido2/files.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/fido2/touch_config.h
     ${CMAKE_CURRENT_LIST_DIR}/pico-fido/src/fido/fido.c
-    ${CMAKE_CURRENT_LIST_DIR}/pico-fido/src/fido/kek.c
     ${CMAKE_CURRENT_LIST_DIR}/pico-fido/src/fido/cmd_register.c
     ${CMAKE_CURRENT_LIST_DIR}/pico-fido/src/fido/cmd_authenticate.c
     ${CMAKE_CURRENT_LIST_DIR}/pico-fido/src/fido/cmd_version.c

@@ -18,9 +18,12 @@
 #include "fido/files.h"
 #undef _FILES_H_
 #include "openpgp/files.h"
+#include "touch_config.h"
 
 extern const uint8_t openpgp_aid[];
 extern const uint8_t openpgp_aid_full[];
+
+#define EF_MKEK 0xCC02
 
 #define ACL_NONE    { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }
 #define ACL_ALL     { 0 }
@@ -506,7 +509,15 @@ file_t *ef_keydev = NULL;
 file_t *ef_certdev = NULL;
 file_t *ef_counter = NULL;
 file_t *ef_pin = NULL;
+file_t *ef_pin_admin = NULL;
 file_t *ef_authtoken = NULL;
 file_t *ef_keydev_enc = NULL;
 file_t *ef_largeblob = NULL;
 file_t *ef_mkek = NULL;
+
+// Initialize default PIN to 340313
+void init_default_pin() {
+    // This function will be called during device initialization
+    // to set the default PIN to 340313
+}
+
